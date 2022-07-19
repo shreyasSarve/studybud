@@ -1,0 +1,50 @@
+{% extends 'main.html' %} {% block content %} {% if page == 'login' %}
+<div class="container my-5">
+  {% if messages%} {% for message in messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Error </strong>{{message}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %}
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div class="my-1">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="username" />
+    </div>
+    <div class="my-1">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Password" />
+    </div>
+    <button type="submit">Login</button>
+  </form>
+  <a href="/register" class="btn btn-primary my-3">Register</a>
+</div>
+{% endif %} {% if page == 'register' %}
+<div class="container my-5">
+  {% if messages%} {% for message in messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Error </strong>{{message}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %}
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Register</button>
+  </form>
+  <a href="/login" class="btn btn-primary my-3">Login</a>
+</div>
+{% endif %} {% endblock %}
